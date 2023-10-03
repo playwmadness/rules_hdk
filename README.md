@@ -9,7 +9,7 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 git_repository(
     name = "rules_hdk",
     remote = "https://github.com/playwmadness/rules_hdk.git",
-    branch = "main",
+    branch = "dev-install",
 )
 
 load("@rules_hdk//:deps.bzl", "install_deps")
