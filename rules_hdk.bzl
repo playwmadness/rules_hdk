@@ -1,3 +1,4 @@
+load("@com_github_google_rules_install//installer:def.bzl", "installer")
 _thirdpartydefs = [
     "FBX_ENABLED=1",
     "OPENCL_ENABLED=1",
@@ -60,13 +61,20 @@ def hdk_dso(name,
             features = [],
             **kwargs):
 
-    native.cc_library(
+    native.cc_binary(
         name = name,
         copts = _cxxopts + _wflags + copts,
         deps = _hdk_toolkit + deps,
         defines = ["MAKING_DSO"] + _hdefines + defines,
         features = ["-default_compile_flags"] + features,
+        linkshared = True,
         **kwargs
+    )
+
+    installer(
+        name = "install_%s" % name,
+        data = [":%s" % name],
+        executable = False,
     )
 
 def hdk_app(name, 
@@ -100,4 +108,9 @@ def hdk_app(name,
         defines = _hdefines + defines,
         features = ["-default_compile_flags"] + features,
         **kwargs
+    )
+
+    installer(
+        name = "install_%s" % name,
+        data = [":%s" % name],
     )

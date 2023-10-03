@@ -1,3 +1,6 @@
+load("@com_github_google_rules_install//:deps.bzl", "install_rules_dependencies")
+load("@com_github_google_rules_install//:setup.bzl", "install_rules_setup")
+
 def _init_hdk_impl(repo_ctx):
     hfs_path = repo_ctx.attr.hfs
     if not hfs_path:
@@ -63,6 +66,8 @@ cc_library(
     repo_ctx.file("BUILD", build_file_contents)
 
 def init_hdk(hfs = "", houdini_version = ""):
+    install_rules_dependencies()
+    install_rules_setup()
 
     environ = []
     if not hfs:
