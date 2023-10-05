@@ -52,7 +52,7 @@ hdk_dso(
 )
 ```
 
-`hdk_app` and `hdk_dso` are wrappers for `cc_binary` and `cc_library` rules correspondingly, and support the same parameters as their underlying rules.
+`hdk_app` and `hdk_dso` are both wrappers for `cc_binary` rule, and support the same parameters.
 
 Additionally, `hdk_app` has `link_with_engine` boolean parameter (default: False), which provides linker with `libHAPI.so` library.
 
